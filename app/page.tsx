@@ -1,103 +1,155 @@
 import Image from "next/image";
+import Link from "next/link";
+import FadeSplit, { FramedButton } from "@/components/FadeSplit";
+import FeaturedStrip from "@/components/FeaturedStrip";
+import HeroStage from "@/components/HeroStage";
+import Reveal from "@/components/Reveal";
+import Tilt from "@/components/Tilt";
+import { photos } from "@/lib/photos";
+import { stories } from "@/lib/site";
+
+const recent = [
+  { photo: photos.coupleGolden, title: "The Wedding Story", tag: "Wedding" },
+  { photo: photos.bride1, title: "Mehendi Smiles", tag: "Bridal" },
+  { photo: photos.bathukamma, title: "Chandoor Bathukamma", tag: "Festival" },
+  { photo: photos.coupleSerenity, title: "Serenity", tag: "Wedding" },
+  { photo: photos.brideLathaSri, title: "Latha Sri", tag: "Bridal" },
+  { photo: photos.brideVeil2, title: "Golden Hour", tag: "Bridal" },
+];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <HeroStage />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* ---------- INTRO LINE ---------- */}
+      <section className="mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
+        <Reveal>
+          <div className="mx-auto mb-8 h-px w-6 bg-ink/40" />
+          <p className="text-[0.78rem] uppercase leading-relaxed tracking-[0.18em] text-ink/75 md:text-sm md:leading-loose">
+            Mcaptures is an editorial wedding studio from Nizamabad, built on candid storytelling. No stiff poses, no
+            rushed moments, just the real emotions of your day, framed to last a lifetime.
+          </p>
+        </Reveal>
+      </section>
+
+      <FeaturedStrip />
+
+      {/* ---------- HI THERE ---------- */}
+      <section className="relative pt-24 md:pt-36">
+        <Reveal className="mx-auto max-w-6xl px-4 md:px-8">
+          <p className="font-script text-center text-5xl text-ink md:ml-[42%] md:text-left md:text-6xl">Hi there, I&apos;m Manikanta!</p>
+        </Reveal>
+        <div className="relative mt-6 md:mt-0">
+          {/* white band behind the text, the photo overlaps it */}
+          <div className="absolute inset-x-0 bottom-0 top-10 bg-paper md:top-24" />
+          <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-16 md:grid-cols-12 md:gap-0 md:px-8 md:pb-24">
+            <Reveal className="md:col-span-4 md:-mt-14">
+              <Tilt max={5} className="shadow-3d">
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <Image src={photos.founder1.src} alt={photos.founder1.alt} fill sizes="(min-width: 768px) 360px, 92vw" className="object-cover" />
+                </div>
+              </Tilt>
+            </Reveal>
+            <Reveal delay={150} className="md:col-span-6 md:col-start-6 md:mt-24 md:border-l md:border-ink/25 md:pl-12">
+              <p className="font-serif text-xl italic leading-relaxed text-ink/80">
+                I&apos;m a candid wedding photographer from Nizamabad, Telangana. A Telugu wedding is a hundred small
+                moments: haldi laughter, a father&apos;s quiet smile, mehendi hands holding tight. I move softly
+                through the day and catch them as they happen.
+              </p>
+              <p className="mt-5 font-serif text-xl italic leading-relaxed text-ink/80">
+                In 2026 that way of working earned the Best Candid Photographer title at the Bharat Kala Puraskar.
+                The trophy is lovely. The trust of every family is the real reward.
+              </p>
+              <Link href="/about" className="label-caps mt-9 inline-block bg-ink px-9 py-4 text-ivory shadow-3d transition hover:-translate-y-0.5 hover:bg-kumkum">
+                Read more
+              </Link>
+            </Reveal>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* ---------- AWARD (faded editorial split) ---------- */}
+      <FadeSplit
+        eyebrow="Bharat Kala Puraskar 2026"
+        title={
+          <>
+            Best Candid <em className="text-kumkum">Photographer</em>
+          </>
+        }
+        subtitle="Honoured for storytelling, not posing"
+        labels={["Award", "Candid", "Telangana", "2026"]}
+        photo={photos.awardStage}
+        focus="50% 20%"
+        cta={<FramedButton href="/about">The journey</FramedButton>}
+      >
+        <p>
+          Awarded at the Hyderabad Photo Trade Show, the title celebrates honest, unposed photographs that let
+          families feel their day again.
+        </p>
+      </FadeSplit>
+
+      {/* ---------- RECENT STORIES (3D tilt cards) ---------- */}
+      <section className="mx-auto max-w-6xl px-4 py-20 md:px-8 md:py-28">
+        <Reveal className="mb-12 text-center">
+          <p className="text-[0.62rem] uppercase tracking-[0.4em] text-ink/60">From the journal</p>
+          <h2 className="mt-3 text-4xl md:text-6xl">
+            Recent <em className="text-kumkum">stories</em>
+          </h2>
+        </Reveal>
+
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8">
+          {recent.map((r, i) => (
+            <Reveal key={r.title} delay={(i % 3) * 120} className={i % 3 === 1 ? "md:mt-12" : ""}>
+              <Tilt max={8} className="rounded-xl shadow-3d">
+                <Link href="/portfolio" className="group relative block aspect-[3/4] overflow-hidden rounded-xl bg-ink">
+                  <Image
+                    src={r.photo.src}
+                    alt={r.photo.alt}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 50vw"
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 to-transparent p-4 pt-12 text-ivory md:p-6">
+                    <p className="text-[0.58rem] uppercase tracking-[0.25em] text-gold-soft">{r.tag}</p>
+                    <p className="font-serif text-xl md:text-2xl">{r.title}</p>
+                  </div>
+                </Link>
+              </Tilt>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-14 text-center">
+          <FramedButton href="/portfolio">View the portfolio</FramedButton>
+        </div>
+      </section>
+
+      {/* ---------- STORY RIBBON ---------- */}
+      <section aria-label="Recent couples" className="overflow-hidden bg-kumkum py-5 text-ivory">
+        {/* The list is duplicated so the loop looks seamless */}
+        <div className="marquee flex w-max gap-10 whitespace-nowrap">
+          {[...stories, ...stories].map((s, i) => (
+            <span key={i} className="flex items-center gap-10 font-serif text-2xl italic md:text-3xl" aria-hidden={i >= stories.length}>
+              {s}
+              <span className="text-base not-italic text-gold-soft">✦</span>
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------- CTA (faded split, photo left) ---------- */}
+      <FadeSplit
+        reverse
+        eyebrow="Your date is set?"
+        title={<span className="font-script text-5xl md:text-7xl">Let&apos;s tell your story</span>}
+        subtitle="A short call is all it takes"
+        labels={["Call", "Plan", "Celebrate"]}
+        photo={photos.coupleSerenity}
+        focus="40% 40%"
+        cta={<FramedButton href="/book">Book a call</FramedButton>}
+      >
+        <p>Wedding season dates fill up fast. Tell us your date and venue and Manikanta will get back to you on WhatsApp.</p>
+      </FadeSplit>
+    </>
   );
 }

@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mcaptures
 
-## Getting Started
+Website for **Mcaptures**, candid wedding photography by Talla Manikanta (Nizamabad, Telangana).
 
-First, run the development server:
+Built with Next.js (App Router), TypeScript and Tailwind CSS. No database: the booking and contact forms open WhatsApp with the details already filled in.
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production check:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm start
+```
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Go to https://vercel.com/new and import this GitHub repo.
+2. Keep the defaults (Framework: Next.js, Build: `npm run build`).
+3. Click **Deploy**. No environment variables are needed.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every push to `main` redeploys automatically.
+
+## Where to edit things
+
+| What | File |
+| --- | --- |
+| Phone, links, location, story names | `lib/site.ts` |
+| Photos and portfolio order | `lib/photos.ts` + `public/photos/` |
+| Reviews (currently samples) | `lib/reviews.ts`, set `isSample = false` once they're real |
+| Colours and fonts | `app/globals.css`, `app/layout.tsx` |
+| Assistant answers | `components/ContactDock.tsx` |
+
+## Before launch
+
+- Replace the sample reviews with real client reviews.
+- Swap the Instagram-sized photos for original high-res files.
+- Confirm the About page wording with the client.
